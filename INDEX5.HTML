@@ -1,0 +1,3173 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Miritini SpeakUp</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef3f7;
+    color: #172033;
+}
+
+header {
+    background: linear-gradient(135deg, #073b4c, #118ab2);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 42px;
+}
+
+header p {
+    font-size: 19px;
+    margin: 8px;
+}
+
+.school {
+    font-size: 14px;
+    opacity: .9;
+}
+
+nav {
+    background: #062f3d;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav button {
+    background: #118ab2;
+    color: white;
+    border: none;
+    padding: 11px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+nav button:hover {
+    background: #06d6a0;
+    color: #062f3d;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 25px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero h2 {
+    font-size: 34px;
+    color: #073b4c;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    gap: 18px;
+}
+
+.stat {
+    background: #e8f7fb;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.stat h3 {
+    font-size: 30px;
+    margin: 5px;
+    color: #118ab2;
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #118ab2;
+    color: white;
+    font-weight: bold;
+    margin: 5px;
+}
+
+button:hover {
+    opacity: .85;
+}
+
+.green {
+    background: #06a77d;
+}
+
+.orange {
+    background: #f77f00;
+}
+
+.red {
+    background: #d62828;
+}
+
+.dark {
+    background: #073b4c;
+}
+
+.challenge {
+    font-size: 21px;
+    line-height: 1.7;
+    background: #f5fbfd;
+    border-left: 6px solid #118ab2;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1px solid #cbd5dc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 130px;
+}
+
+.vocab-word {
+    font-size: 36px;
+    color: #073b4c;
+    font-weight: bold;
+}
+
+.definition {
+    font-size: 19px;
+    margin: 12px 0;
+}
+
+.example {
+    background: #f2f6f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.dictionary-card {
+    border-left: 6px solid #06a77d;
+    background: #f9fcfd;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+.dictionary-card h2 {
+    color: #073b4c;
+}
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #edf5f8;
+    color: #172033;
+}
+
+.quiz-option:hover {
+    background: #d4edf4;
+}
+
+.timer {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #d62828;
+    margin: 20px;
+}
+
+.result {
+    margin-top: 15px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #edf8f4;
+}
+
+.progress-bar {
+    height: 27px;
+    width: 100%;
+    background: #dce4e8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #06a77d;
+    transition: .5s;
+}
+
+.badge {
+    display: inline-block;
+    background: #ffd166;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.favourite {
+    display: inline-block;
+    margin: 5px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+footer {
+    background: #062f3d;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+@media(max-width:600px) {
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    .challenge {
+        font-size: 18px;
+    }
+
+    nav button {
+        font-size: 12px;
+        padding: 9px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🗣️ Miritini SpeakUp</h1>
+
+<p>Practice English. Speak with Confidence.</p>
+
+<div class="school">
+Miritini Mixed Day Senior Secondary School
+</div>
+
+</header>
+
+
+<nav>
+
+<button onclick="showPage('home')">🏠 Home</button>
+
+<button onclick="showPage('dictionary')">
+📚 Dictionary
+</button>
+
+<button onclick="showPage('speaking')">
+🎤 Speaking
+</button>
+
+<button onclick="showPage('debate')">
+🗣️ Debate
+</button>
+
+<button onclick="showPage('grammar')">
+✍️ Grammar
+</button>
+
+<button onclick="showPage('quiz')">
+🧠 Quiz
+</button>
+
+<button onclick="showPage('progress')">
+🏆 Progress
+</button>
+
+</nav>
+
+
+<div class="container">
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="card hero">
+
+<h2>Welcome to Miritini SpeakUp</h2>
+
+<p>
+An advanced English communication trainer for students.
+</p>
+
+<button onclick="showPage('dictionary')">
+📚 Open Dictionary
+</button>
+
+<button class="green" onclick="showPage('speaking')">
+🎤 Start Speaking
+</button>
+
+</div>
+
+
+<div class="grid">
+
+<div class="stat">
+
+<h3 id="homePoints">0</h3>
+
+<p>Total Points</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3 id="homeActivities">0</h3>
+
+<p>Activities</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3 id="homeRank">Beginner</h3>
+
+<p>Rank</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🚀 What can you practise?</h2>
+
+<div class="grid">
+
+<div>
+
+<h3>📚 Advanced Vocabulary</h3>
+
+<p>
+Learn sophisticated words, meanings,
+synonyms, antonyms and examples.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>🎤 Speaking</h3>
+
+<p>
+Practise expressing complex ideas clearly.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>🗣️ Debate</h3>
+
+<p>
+Develop arguments and critical thinking.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>✍️ Grammar</h3>
+
+<p>
+Practise advanced English structures.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- DICTIONARY -->
+
+<section id="dictionary" class="page">
+
+<div class="card">
+
+<h2>📚 Advanced English Dictionary</h2>
+
+<p>
+Search the vocabulary database.
+</p>
+
+<input
+id="wordSearch"
+type="text"
+placeholder="🔎 Search a word..."
+oninput="searchVocabulary()"
+>
+
+
+<div class="category-buttons">
+
+<button onclick="filterVocabulary('all')">
+📚 All
+</button>
+
+<button onclick="filterVocabulary('academic')">
+🎓 Academic
+</button>
+
+<button onclick="filterVocabulary('debate')">
+🗣️ Debate
+</button>
+
+<button onclick="filterVocabulary('technology')">
+💻 Technology
+</button>
+
+<button onclick="filterVocabulary('environment')">
+🌍 Environment
+</button>
+
+<button onclick="filterVocabulary('leadership')">
+👑 Leadership
+</button>
+
+<button onclick="filterVocabulary('communication')">
+💬 Communication
+</button>
+
+</div>
+
+
+<button onclick="randomVocabulary()">
+🎲 Random Word
+</button>
+
+<button class="orange" onclick="showWordOfDay()">
+📅 Word of the Day
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div id="dictionaryResult">
+
+<h2>🔎 Search the Dictionary</h2>
+
+<p>
+Type a word above.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>⭐ Favourite Words</h2>
+
+<div id="favouritesList">
+No favourite words yet.
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- SPEAKING -->
+
+<section id="speaking" class="page">
+
+<div class="card">
+
+<h2>🎤 Advanced Speaking Practice</h2>
+
+<p>
+Choose your level and answer the question aloud.
+</p>
+
+
+<button onclick="setSpeakingLevel('intermediate')">
+Intermediate
+</button>
+
+<button onclick="setSpeakingLevel('advanced')">
+Advanced
+</button>
+
+<button class="dark" onclick="setSpeakingLevel('expert')">
+Expert
+</button>
+
+
+<h3 id="speakingLevel">
+Advanced
+</h3>
+
+
+<div
+class="challenge"
+id="speakingQuestion">
+Loading...
+</div>
+
+
+<button onclick="hearSpeakingQuestion()">
+🔊 Hear Question
+</button>
+
+<button class="green" onclick="startSpeaking()">
+🎙️ Start Speaking
+</button>
+
+<button onclick="nextSpeakingQuestion()">
+➡️ Next
+</button>
+
+
+<div
+id="speakingResult"
+class="result">
+Your speech transcript will appear here.
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- DEBATE -->
+
+<section id="debate" class="page">
+
+<div class="card">
+
+<h2>🗣️ Debate Practice</h2>
+
+<p>
+Choose a topic and present a logical argument.
+</p>
+
+
+<select id="debateTopic">
+
+<option>
+Should artificial intelligence be used more in schools?
+</option>
+
+<option>
+Should school uniforms be compulsory?
+</option>
+
+<option>
+Does social media benefit students?
+</option>
+
+<option>
+Should students participate in community service?
+</option>
+
+<option>
+Is technology making education better?
+</option>
+
+</select>
+
+
+<div class="timer" id="debateTimer">
+60
+</div>
+
+
+<button class="green" onclick="startDebate(60)">
+▶️ 1 Minute
+</button>
+
+<button class="orange" onclick="startDebate(120)">
+▶️ 2 Minutes
+</button>
+
+<button class="red" onclick="stopDebate()">
+⏹️ Stop
+</button>
+
+
+<br>
+
+
+<button onclick="startDebateRecognition()">
+🎙️ Speak Debate
+</button>
+
+
+<div
+id="debateResult"
+class="result">
+Your debate transcript will appear here.
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- GRAMMAR -->
+
+<section id="grammar" class="page">
+
+<div class="card">
+
+<h2>✍️ Advanced Grammar</h2>
+
+<div
+id="grammarQuestion"
+class="challenge">
+Loading...
+</div>
+
+
+<input
+id="grammarAnswer"
+placeholder="Type your answer..."
+>
+
+
+<button class="green" onclick="checkGrammar()">
+✅ Check
+</button>
+
+<button onclick="nextGrammar()">
+➡️ Next
+</button>
+
+
+<div
+id="grammarResult"
+class="result">
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="page">
+
+<div class="card">
+
+<h2>🧠 Advanced English Quiz</h2>
+
+<h3 id="quizQuestion">
+Loading...
+</h3>
+
+
+<div id="quizOptions">
+</div>
+
+
+<div
+id="quizResult"
+class="result">
+</div>
+
+
+<button onclick="nextQuiz()">
+➡️ Next Question
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PROGRESS -->
+
+<section id="progress" class="page">
+
+<div class="card">
+
+<h2>🏆 My Progress</h2>
+
+
+<div class="grid">
+
+<div class="stat">
+
+<h3 id="totalPoints">
+0
+</h3>
+
+<p>Total Points</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3 id="activities">
+0
+</h3>
+
+<p>Activities</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3 id="rank">
+Beginner
+</h3>
+
+<p>Rank</p>
+
+</div>
+
+</div>
+
+
+<h3>Progress to Next Rank</h3>
+
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+id="progressFill">
+</div>
+
+</div>
+
+
+<br>
+
+
+<div
+class="badge"
+id="rankBadge">
+🌱 Beginner Communicator
+</div>
+
+
+<br><br>
+
+
+<button
+class="red"
+onclick="resetProgress()">
+Reset Progress
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<footer>
+
+<p>
+<strong>Miritini SpeakUp</strong>
+</p>
+
+<p>
+Practice English. Speak with Confidence.
+</p>
+
+<p>
+Miritini Mixed Day Senior Secondary School
+</p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   VOCABULARY DATABASE
+===================================================== */
+
+const vocabulary = [
+
+{
+word:"Abundant",
+definition:"Existing in large quantities; plentiful.",
+synonyms:["Plentiful","Ample"],
+antonyms:["Scarce"],
+example:"The region has abundant natural resources.",
+category:"environment"
+},
+
+{
+word:"Accelerate",
+definition:"To increase in speed or make something happen faster.",
+synonyms:["Hasten","Speed up"],
+antonyms:["Delay"],
+example:"Technology can accelerate the learning process.",
+category:"technology"
+},
+
+{
+word:"Accommodate",
+definition:"To provide space for someone or adjust to a situation.",
+synonyms:["Adapt","Assist"],
+antonyms:["Reject"],
+example:"The school expanded its facilities to accommodate more students.",
+category:"academic"
+},
+
+{
+word:"Accumulate",
+definition:"To gradually collect or gather something.",
+synonyms:["Collect","Gather"],
+antonyms:["Disperse"],
+example:"Students accumulate knowledge through continuous study.",
+category:"academic"
+},
+
+{
+word:"Accurate",
+definition:"Correct and free from mistakes.",
+synonyms:["Correct","Precise"],
+antonyms:["Incorrect"],
+example:"The researcher provided accurate information.",
+category:"academic"
+},
+
+{
+word:"Adequate",
+definition:"Sufficient or satisfactory for a particular purpose.",
+synonyms:["Sufficient","Enough"],
+antonyms:["Insufficient"],
+example:"The students had adequate time to complete the examination.",
+category:"academic"
+},
+
+{
+word:"Advocate",
+definition:"To publicly support or recommend an idea or cause.",
+synonyms:["Support","Promote"],
+antonyms:["Oppose"],
+example:"Many educators advocate practical learning.",
+category:"debate"
+},
+
+{
+word:"Ambiguous",
+definition:"Having more than one possible meaning.",
+synonyms:["Unclear","Uncertain"],
+antonyms:["Clear"],
+example:"The statement was ambiguous and caused confusion.",
+category:"communication"
+},
+
+{
+word:"Analyse",
+definition:"To examine something carefully in order to understand it.",
+synonyms:["Examine","Evaluate"],
+antonyms:["Ignore"],
+example:"Students were asked to analyse the causes of climate change.",
+category:"academic"
+},
+
+{
+word:"Anticipate",
+definition:"To expect or predict something before it happens.",
+synonyms:["Expect","Predict"],
+antonyms:["Doubt"],
+example:"The school anticipated an increase in student enrolment.",
+category:"academic"
+},
+
+{
+word:"Apparent",
+definition:"Clearly visible or understood.",
+synonyms:["Obvious","Evident"],
+antonyms:["Hidden"],
+example:"It became apparent that additional resources were needed.",
+category:"communication"
+},
+
+{
+word:"Articulate",
+definition:"Able to express ideas clearly and effectively.",
+synonyms:["Eloquent","Expressive"],
+antonyms:["Inarticulate"],
+example:"The student gave an articulate presentation.",
+category:"communication"
+},
+
+{
+word:"Authentic",
+definition:"Genuine, real or trustworthy.",
+synonyms:["Genuine","Real"],
+antonyms:["Fake"],
+example:"Students should use authentic sources when researching.",
+category:"academic"
+},
+
+{
+word:"Beneficial",
+definition:"Producing a useful or positive result.",
+synonyms:["Helpful","Advantageous"],
+antonyms:["Harmful"],
+example:"Regular reading is beneficial to language development.",
+category:"academic"
+},
+
+{
+word:"Coherent",
+definition:"Logical, clear and well organised.",
+synonyms:["Logical","Consistent"],
+antonyms:["Confusing"],
+example:"The speaker presented a coherent argument.",
+category:"communication"
+},
+
+{
+word:"Comprehensive",
+definition:"Including all or nearly all important aspects.",
+synonyms:["Complete","Thorough"],
+antonyms:["Limited"],
+example:"The report provided a comprehensive analysis.",
+category:"academic"
+},
+
+{
+word:"Compelling",
+definition:"Very convincing or powerful.",
+synonyms:["Convincing","Persuasive"],
+antonyms:["Unconvincing"],
+example:"She presented a compelling argument.",
+category:"debate"
+},
+
+{
+word:"Competent",
+definition:"Having the necessary ability or skill.",
+synonyms:["Capable","Skilled"],
+antonyms:["Incompetent"],
+example:"The competent student completed the project successfully.",
+category:"academic"
+},
+
+{
+word:"Contemporary",
+definition:"Belonging to the present time.",
+synonyms:["Modern","Current"],
+antonyms:["Ancient"],
+example:"Contemporary education relies heavily on technology.",
+category:"technology"
+},
+
+{
+word:"Controversial",
+definition:"Causing disagreement or strong opposing opinions.",
+synonyms:["Debatable","Disputed"],
+antonyms:["Uncontroversial"],
+example:"Artificial intelligence remains a controversial topic.",
+category:"debate"
+},
+
+{
+word:"Credible",
+definition:"Believable and trustworthy.",
+synonyms:["Reliable","Trustworthy"],
+antonyms:["Unreliable"],
+example:"Researchers should use credible sources.",
+category:"academic"
+},
+
+{
+word:"Crucial",
+definition:"Extremely important.",
+synonyms:["Essential","Vital"],
+antonyms:["Unimportant"],
+example:"Communication is crucial to effective leadership.",
+category:"leadership"
+},
+
+{
+word:"Deteriorate",
+definition:"To become worse over time.",
+synonyms:["Decline","Worsen"],
+antonyms:["Improve"],
+example:"Poor maintenance can cause infrastructure to deteriorate.",
+category:"environment"
+},
+
+{
+word:"Diverse",
+definition:"Including many different types or groups.",
+synonyms:["Varied","Multicultural"],
+antonyms:["Uniform"],
+example:"The school has a diverse student population.",
+category:"communication"
+},
+
+{
+word:"Elaborate",
+definition:"To explain something in greater detail.",
+synonyms:["Expand","Explain"],
+antonyms:["Simplify"],
+example:"Please elaborate on your main argument.",
+category:"communication"
+},
+
+{
+word:"Empirical",
+definition:"Based on observation, experience or evidence.",
+synonyms:["Evidence-based","Observed"],
+antonyms:["Theoretical"],
+example:"The researchers collected empirical evidence.",
+category:"academic"
+},
+
+{
+word:"Enhance",
+definition:"To improve the quality or value of something.",
+synonyms:["Improve","Strengthen"],
+antonyms:["Reduce"],
+example:"Technology can enhance classroom learning.",
+category:"technology"
+},
+
+{
+word:"Ethical",
+definition:"Related to principles of right and wrong.",
+synonyms:["Moral","Principled"],
+antonyms:["Unethical"],
+example:"Students should consider the ethical consequences of their decisions.",
+category:"debate"
+},
+
+{
+word:"Evaluate",
+definition:"To judge the quality, value or importance of something.",
+synonyms:["Assess","Judge"],
+antonyms:["Ignore"],
+example:"Students must evaluate the reliability of information.",
+category:"academic"
+},
+
+{
+word:"Evident",
+definition:"Clearly seen or understood.",
+synonyms:["Obvious","Clear"],
+antonyms:["Unclear"],
+example:"The benefits of the programme were evident.",
+category:"communication"
+},
+
+{
+word:"Facilitate",
+definition:"To make an activity or process easier.",
+synonyms:["Assist","Enable"],
+antonyms:["Hinder"],
+example:"Technology can facilitate communication.",
+category:"technology"
+},
+
+{
+word:"Fundamental",
+definition:"Essential or forming the basic part of something.",
+synonyms:["Basic","Essential"],
+antonyms:["Secondary"],
+example:"Communication is a fundamental life skill.",
+category:"academic"
+},
+
+{
+word:"Hypothesis",
+definition:"A proposed explanation that can be tested.",
+synonyms:["Proposal","Theory"],
+antonyms:["Fact"],
+example:"The scientist developed a hypothesis before the experiment.",
+category:"academic"
+},
+
+{
+word:"Inevitable",
+definition:"Certain to happen and impossible to avoid.",
+synonyms:["Unavoidable","Certain"],
+antonyms:["Avoidable"],
+example:"Change is inevitable in modern society.",
+category:"debate"
+},
+
+{
+word:"Innovative",
+definition:"Introducing new ideas or methods.",
+synonyms:["Creative","Original"],
+antonyms:["Traditional"],
+example:"The school introduced an innovative teaching method.",
+category:"technology"
+},
+
+{
+word:"Insight",
+definition:"A deep understanding of a subject.",
+synonyms:["Understanding","Awareness"],
+antonyms:["Ignorance"],
+example:"The discussion provided valuable insight into the problem.",
+category:"academic"
+},
+
+{
+word:"Integrity",
+definition:"Honesty and strong moral principles.",
+synonyms:["Honesty","Morality"],
+antonyms:["Dishonesty"],
+example:"A good leader should demonstrate integrity.",
+category:"leadership"
+},
+
+{
+word:"Justify",
+definition:"To provide reasons or evidence supporting an idea.",
+synonyms:["Defend","Explain"],
+antonyms:["Condemn"],
+example:"Students must justify their answers.",
+category:"debate"
+},
+
+{
+word:"Meticulous",
+definition:"Extremely careful and precise about details.",
+synonyms:["Thorough","Careful"],
+antonyms:["Careless"],
+example:"The researcher kept meticulous records.",
+category:"academic"
+},
+
+{
+word:"Nevertheless",
+definition:"In spite of something previously mentioned.",
+synonyms:["However","Nonetheless"],
+antonyms:["Therefore"],
+example:"The task was difficult; nevertheless, the students succeeded.",
+category:"communication"
+},
+
+{
+word:"Objective",
+definition:"Not influenced by personal feelings or opinions.",
+synonyms:["Impartial","Neutral"],
+antonyms:["Biased"],
+example:"A researcher should remain objective.",
+category:"academic"
+},
+
+{
+word:"Persuasive",
+definition:"Able to convince someone to accept an idea.",
+synonyms:["Convincing","Influential"],
+antonyms:["Unconvincing"],
+example:"The student delivered a persuasive speech.",
+category:"debate"
+},
+
+{
+word:"Prevalent",
+definition:"Common or widespread.",
+synonyms:["Common","Widespread"],
+antonyms:["Rare"],
+example:"Mobile technology is prevalent among young people.",
+category:"technology"
+},
+
+{
+word:"Proficient",
+definition:"Highly skilled or competent.",
+synonyms:["Skilled","Competent"],
+antonyms:["Unskilled"],
+example:"She became proficient in public speaking.",
+category:"communication"
+},
+
+{
+word:"Resilient",
+definition:"Able to recover from difficulties.",
+synonyms:["Strong","Adaptable"],
+antonyms:["Fragile"],
+example:"Resilient students continue working after failure.",
+category:"leadership"
+},
+
+{
+word:"Significant",
+definition:"Important or meaningful.",
+synonyms:["Important","Substantial"],
+antonyms:["Insignificant"],
+example:"Education has a significant impact on society.",
+category:"academic"
+},
+
+{
+word:"Sophisticated",
+definition:"Highly developed, advanced or complex.",
+synonyms:["Advanced","Complex"],
+antonyms:["Simple"],
+example:"The student used sophisticated language.",
+category:"communication"
+},
+
+{
+word:"Substantial",
+definition:"Large in amount, size or importance.",
+synonyms:["Considerable","Significant"],
+antonyms:["Insignificant"],
+example:"The project made a substantial contribution.",
+category:"academic"
+},
+
+{
+word:"Sustainable",
+definition:"Able to continue without causing unacceptable harm.",
+synonyms:["Maintainable","Viable"],
+antonyms:["Unsustainable"],
+example:"Schools should promote sustainable environmental practices.",
+category:"environment"
+},
+
+{
+word:"Versatile",
+definition:"Able to adapt to many different functions.",
+synonyms:["Adaptable","Flexible"],
+antonyms:["Limited"],
+example:"A versatile student can perform well in different activities.",
+category:"communication"
+},
+
+{
+word:"Furthermore",
+definition:"In addition to what has already been stated.",
+synonyms:["Moreover","Additionally"],
+antonyms:["However"],
+example:"The solution is affordable; furthermore, it is sustainable.",
+category:"essay"
+},
+
+{
+word:"Consequently",
+definition:"As a result of something.",
+synonyms:["Therefore","Thus"],
+antonyms:["Nevertheless"],
+example:"He failed to prepare; consequently, the presentation was weak.",
+category:"essay"
+},
+
+{
+word:"Perspective",
+definition:"A particular way of viewing or understanding something.",
+synonyms:["Viewpoint","Position"],
+antonyms:[],
+example:"Listening to different perspectives improves decision-making.",
+category:"debate"
+},
+
+{
+word:"Algorithm",
+definition:"A step-by-step procedure for solving a problem.",
+synonyms:["Procedure","Method"],
+antonyms:[],
+example:"The programmer designed an algorithm to process the data.",
+category:"technology"
+},
+
+{
+word:"Biodiversity",
+definition:"The variety of living organisms in an environment.",
+synonyms:["Biological diversity","Variety"],
+antonyms:[],
+example:"Protecting biodiversity is essential for healthy ecosystems.",
+category:"environment"
+},
+
+{
+word:"Rhetoric",
+definition:"The art of using language effectively to persuade or influence.",
+synonyms:["Oratory","Persuasion"],
+antonyms:[],
+example:"The speaker used powerful rhetoric during the debate.",
+category:"debate"
+},
+
+{
+word:"Leadership",
+definition:"The ability to guide or influence people.",
+synonyms:["Guidance","Direction"],
+antonyms:["Followership"],
+example:"Effective leadership can transform a school community.",
+category:"leadership"
+},
+
+{
+word:"Collaboration",
+definition:"The act of working together to achieve a shared goal.",
+synonyms:["Cooperation","Teamwork"],
+antonyms:["Isolation"],
+example:"Collaboration helps students solve complex problems.",
+category:"communication"
+},
+
+{
+word:"Adaptability",
+definition:"The ability to adjust to new conditions.",
+synonyms:["Flexibility","Versatility"],
+antonyms:["Rigidity"],
+example:"Adaptability is important in a rapidly changing world.",
+category:"leadership"
+},
+
+{
+word:"Accountability",
+definition:"Responsibility for one's actions and decisions.",
+synonyms:["Responsibility","Answerability"],
+antonyms:["Irresponsibility"],
+example:"Accountability is essential for effective leadership.",
+category:"leadership"
+},
+
+{
+word:"Sustainability",
+definition:"The ability to maintain something over a long period.",
+synonyms:["Durability","Continuity"],
+antonyms:["Unsustainability"],
+example:"Sustainability should be considered when planning development.",
+category:"environment"
+},
+
+{
+word:"Misinformation",
+definition:"False or inaccurate information.",
+synonyms:["False information","Inaccuracy"],
+antonyms:["Truth"],
+example:"Students should learn how to identify misinformation online.",
+category:"technology"
+},
+
+{
+word:"Cybersecurity",
+definition:"The protection of computer systems and networks from digital threats.",
+synonyms:["Digital security","Computer security"],
+antonyms:[],
+example:"Cybersecurity is essential when using online learning platforms.",
+category:"technology"
+},
+
+{
+word:"Entrepreneurship",
+definition:"The activity of creating and managing a business or venture.",
+synonyms:["Business creation","Enterprise"],
+antonyms:[],
+example:"Entrepreneurship can create employment opportunities.",
+category:"leadership"
+},
+
+{
+word:"Innovation",
+definition:"The introduction of new ideas, methods or products.",
+synonyms:["Creativity","Invention"],
+antonyms:["Stagnation"],
+example:"Innovation can improve the quality of education.",
+category:"technology"
+},
+
+{
+word:"Accountable",
+definition:"Responsible for actions or decisions.",
+synonyms:["Responsible","Answerable"],
+antonyms:["Irresponsible"],
+example:"A responsible leader should be accountable for decisions.",
+category:"leadership"
+},
+
+{
+word:"Concise",
+definition:"Expressing much information clearly in few words.",
+synonyms:["Brief","Succinct"],
+antonyms:["Wordy"],
+example:"The student gave a concise answer.",
+category:"communication"
+},
+
+{
+word:"Eloquent",
+definition:"Fluent or persuasive in speaking or writing.",
+synonyms:["Articulate","Expressive"],
+antonyms:["Inarticulate"],
+example:"The speaker delivered an eloquent presentation.",
+category:"communication"
+},
+
+{
+word:"Impartial",
+definition:"Treating all sides fairly.",
+synonyms:["Neutral","Unbiased"],
+antonyms:["Biased"],
+example:"A judge should remain impartial.",
+category:"debate"
+},
+
+{
+word:"Relevance",
+definition:"The quality of being closely connected to a subject.",
+synonyms:["Importance","Connection"],
+antonyms:["Irrelevance"],
+example:"The student explained the relevance of the evidence.",
+category:"academic"
+},
+
+{
+word:"Credibility",
+definition:"The quality of being trusted or believed.",
+synonyms:["Reliability","Trustworthiness"],
+antonyms:["Unreliability"],
+example:"The credibility of the source must be examined.",
+category:"academic"
+},
+
+{
+word:"Procrastination",
+definition:"The habit of delaying tasks unnecessarily.",
+synonyms:["Delay","Postponement"],
+antonyms:["Promptness"],
+example:"Procrastination can negatively affect academic performance.",
+category:"academic"
+},
+
+{
+word:"Determination",
+definition:"Firmness of purpose and persistence.",
+synonyms:["Persistence","Resolve"],
+antonyms:["Indecision"],
+example:"Determination helped the student overcome difficulties.",
+category:"leadership"
+},
+
+{
+word:"Curiosity",
+definition:"A strong desire to learn or know something.",
+synonyms:["Interest","Inquisitiveness"],
+antonyms:["Indifference"],
+example:"Curiosity encourages students to explore new ideas.",
+category:"academic"
+},
+
+{
+word:"Critical",
+definition:"Involving careful judgement and analysis.",
+synonyms:["Analytical","Evaluative"],
+antonyms:["Uncritical"],
+example:"Critical thinking helps students assess information.",
+category:"academic"
+},
+
+{
+word:"Constructive",
+definition:"Useful and intended to improve something.",
+synonyms:["Helpful","Productive"],
+antonyms:["Destructive"],
+example:"The teacher gave constructive feedback.",
+category:"communication"
+},
+
+{
+word:"Diplomatic",
+definition:"Skilled at dealing with people without causing offence.",
+synonyms:["Tactful","Sensitive"],
+antonyms:["Insensitive"],
+example:"The leader gave a diplomatic response.",
+category:"leadership"
+},
+
+{
+word:"Empathy",
+definition:"The ability to understand another person's feelings.",
+synonyms:["Understanding","Compassion"],
+antonyms:["Indifference"],
+example:"Empathy helps students work effectively with others.",
+category:"communication"
+},
+
+{
+word:"Tolerance",
+definition:"Respect for opinions or behaviour that differ from one's own.",
+synonyms:["Acceptance","Open-mindedness"],
+antonyms:["Intolerance"],
+example:"Tolerance promotes peaceful communication.",
+category:"communication"
+},
+
+{
+word:"Proactive",
+definition:"Taking action before a problem occurs.",
+synonyms:["Preventive","Initiative-taking"],
+antonyms:["Reactive"],
+example:"A proactive student prepares before examinations.",
+category:"leadership"
+},
+
+{
+word:"Strategic",
+definition:"Carefully planned to achieve a particular goal.",
+synonyms:["Planned","Tactical"],
+antonyms:["Unplanned"],
+example:"The school developed a strategic plan.",
+category:"leadership"
+},
+
+{
+word:"Transparent",
+definition:"Open and easy to understand.",
+synonyms:["Clear","Open"],
+antonyms:["Secretive"],
+example:"The organisation should maintain transparent procedures.",
+category:"leadership"
+},
+
+{
+word:"Accountability",
+definition:"The obligation to accept responsibility for actions.",
+synonyms:["Responsibility","Answerability"],
+antonyms:["Irresponsibility"],
+example:"Accountability strengthens public trust.",
+category:"leadership"
+},
+
+{
+word:"Sceptical",
+definition:"Not easily convinced that something is true.",
+synonyms:["Doubtful","Questioning"],
+antonyms:["Convinced"],
+example:"The researcher remained sceptical until evidence was provided.",
+category:"academic"
+},
+
+{
+word:"Substantiate",
+definition:"To provide evidence supporting a claim.",
+synonyms:["Support","Verify"],
+antonyms:["Disprove"],
+example:"The writer must substantiate the argument with evidence.",
+category:"debate"
+},
+
+{
+word:"Contradict",
+definition:"To state the opposite of something.",
+synonyms:["Oppose","Dispute"],
+antonyms:["Confirm"],
+example:"The evidence contradicts the original claim.",
+category:"debate"
+},
+
+{
+word:"Infer",
+definition:"To reach a conclusion from available evidence.",
+synonyms:["Deduce","Conclude"],
+antonyms:["Misinterpret"],
+example:"Readers can infer the author's meaning from the context.",
+category:"academic"
+},
+
+{
+word:"Interpret",
+definition:"To explain the meaning of something.",
+synonyms:["Explain","Understand"],
+antonyms:["Misunderstand"],
+example:"Students must interpret the information carefully.",
+category:"academic"
+},
+
+{
+word:"Synthesis",
+definition:"The combination of different ideas to form a whole.",
+synonyms:["Combination","Integration"],
+antonyms:["Separation"],
+example:"The essay demonstrates a synthesis of several viewpoints.",
+category:"academic"
+},
+
+{
+word:"Paradigm",
+definition:"A typical model or pattern of something.",
+synonyms:["Model","Framework"],
+antonyms:[],
+example:"Technology has created a new paradigm for education.",
+category:"technology"
+},
+
+{
+word:"Transformative",
+definition:"Causing a major change.",
+synonyms:["Revolutionary","Changing"],
+antonyms:["Unchanging"],
+example:"Digital learning can have a transformative effect on education.",
+category:"technology"
+},
+
+{
+word:"Implication",
+definition:"A possible consequence or meaning.",
+synonyms:["Consequence","Significance"],
+antonyms:[],
+example:"Students should consider the implications of their decisions.",
+category:"debate"
+},
+
+{
+word:"Prejudice",
+definition:"An unfair opinion formed without sufficient knowledge.",
+synonyms:["Bias","Preconception"],
+antonyms:["Fairness"],
+example:"Education can help reduce prejudice.",
+category:"communication"
+},
+
+{
+word:"Stereotype",
+definition:"A fixed and oversimplified idea about a group.",
+synonyms:["Generalisation","Preconception"],
+antonyms:[],
+example:"Critical thinking helps people challenge stereotypes.",
+category:"communication"
+},
+
+{
+word:"Sustain",
+definition:"To maintain something over a period of time.",
+synonyms:["Maintain","Support"],
+antonyms:["Destroy"],
+example:"The school must sustain its environmental programme.",
+category:"environment"
+},
+
+{
+word:"Conservation",
+definition:"The protection and careful management of natural resources.",
+synonyms:["Protection","Preservation"],
+antonyms:["Destruction"],
+example:"Environmental conservation protects future generations.",
+category:"environment"
+},
+
+{
+word:"Renewable",
+definition:"Able to be naturally replaced or restored.",
+synonyms:["Replenishable","Sustainable"],
+antonyms:["Non-renewable"],
+example:"Solar energy is a renewable source of power.",
+category:"environment"
+},
+
+{
+word:"Pollution",
+definition:"The introduction of harmful substances into the environment.",
+synonyms:["Contamination","Waste"],
+antonyms:["Purity"],
+example:"Plastic pollution threatens marine ecosystems.",
+category:"environment"
+},
+
+{
+word:"Ecosystem",
+definition:"A community of living organisms and their environment.",
+synonyms:["Ecological system"],
+antonyms:[],
+example:"A healthy ecosystem depends on biodiversity.",
+category:"environment"
+},
+
+{
+word:"Digitalisation",
+definition:"The process of using digital technology in activities and systems.",
+synonyms:["Digitisation","Computerisation"],
+antonyms:[],
+example:"Digitalisation has changed how students access information.",
+category:"technology"
+},
+
+{
+word:"Automation",
+definition:"The use of technology to perform tasks with minimal human control.",
+synonyms:["Mechanisation","Computerisation"],
+antonyms:["Manual operation"],
+example:"Automation is changing many workplaces.",
+category:"technology"
+},
+
+{
+word:"Artificial",
+definition:"Made or produced by humans rather than occurring naturally.",
+synonyms:["Synthetic","Man-made"],
+antonyms:["Natural"],
+example:"Artificial intelligence is increasingly used in education.",
+category:"technology"
+},
+
+{
+word:"Intelligence",
+definition:"The ability to learn, understand and solve problems.",
+synonyms:["Understanding","Ability"],
+antonyms:["Ignorance"],
+example:"Human intelligence involves reasoning and creativity.",
+category:"academic"
+},
+
+{
+word:"Fluency",
+definition:"The ability to speak or write smoothly and effectively.",
+synonyms:["Expressiveness","Proficiency"],
+antonyms:["Hesitation"],
+example:"Regular conversation practice improves English fluency.",
+category:"communication"
+},
+
+{
+word:"Pronunciation",
+definition:"The way a word is spoken.",
+synonyms:["Enunciation","Articulation"],
+antonyms:[],
+example:"Correct pronunciation improves communication.",
+category:"communication"
+},
+
+{
+word:"Vocabulary",
+definition:"The collection of words known and used by a person or language.",
+synonyms:["Lexicon","Word stock"],
+antonyms:[],
+example:"Reading widely can expand your vocabulary.",
+category:"academic"
+},
+
+{
+word:"Argument",
+definition:"A reason or set of reasons used to support an idea.",
+synonyms:["Reason","Case"],
+antonyms:[],
+example:"The student presented a strong argument.",
+category:"debate"
+},
+
+{
+word:"Evidence",
+definition:"Information that supports a claim or conclusion.",
+synonyms:["Proof","Information"],
+antonyms:["Disproof"],
+example:"The researcher provided evidence for the conclusion.",
+category:"academic"
+},
+
+{
+word:"Conclusion",
+definition:"A judgement or decision reached after considering information.",
+synonyms:["Inference","Decision"],
+antonyms:[],
+example:"The essay ends with a clear conclusion.",
+category:"academic"
+},
+
+{
+word:"Introduction",
+definition:"The opening section that presents a subject.",
+synonyms:["Opening","Beginning"],
+antonyms:["Conclusion"],
+example:"The introduction clearly explains the purpose of the essay.",
+category:"essay"
+},
+
+{
+word:"Transition",
+definition:"A movement from one idea, state or situation to another.",
+synonyms:["Change","Shift"],
+antonyms:[],
+example:"Good transitions make an essay easier to read.",
+category:"essay"
+},
+
+{
+word:"Paragraph",
+definition:"A distinct section of writing dealing with one main idea.",
+synonyms:["Section","Passage"],
+antonyms:[],
+example:"Each paragraph should develop a clear idea.",
+category:"essay"
+},
+
+{
+word:"Argumentative",
+definition:"Presenting reasons for or against an idea.",
+synonyms:["Persuasive","Debating"],
+antonyms:[],
+example:"Students wrote an argumentative essay.",
+category:"essay"
+},
+
+{
+word:"Narrative",
+definition:"A spoken or written account of connected events.",
+synonyms:["Story","Account"],
+antonyms:[],
+example:"The student wrote a compelling narrative.",
+category:"essay"
+},
+
+{
+word:"Descriptive",
+definition:"Giving a detailed account of something.",
+synonyms:["Detailed","Illustrative"],
+antonyms:[],
+example:"The descriptive essay used vivid language.",
+category:"essay"
+},
+
+{
+word:"Leadership",
+definition:"The ability to guide, influence and inspire others.",
+synonyms:["Guidance","Direction"],
+antonyms:[],
+example:"Good leadership requires integrity.",
+category:"leadership"
+},
+
+{
+word:"Motivation",
+definition:"The reason or desire that causes someone to act.",
+synonyms:["Incentive","Drive"],
+antonyms:["Apathy"],
+example:"Motivation can improve academic performance.",
+category:"leadership"
+},
+
+{
+word:"Vision",
+definition:"A clear idea of what someone hopes to achieve in the future.",
+synonyms:["Goal","Aspiration"],
+antonyms:[],
+example:"The student leader presented a clear vision.",
+category:"leadership"
+},
+
+{
+word:"Responsibility",
+definition:"A duty or obligation to deal with something.",
+synonyms:["Duty","Accountability"],
+antonyms:["Irresponsibility"],
+example:"Students have a responsibility to respect their school.",
+category:"leadership"
+}
+
+];
+
+
+/* =====================================================
+   APPLICATION STATE
+===================================================== */
+
+let points =
+Number(localStorage.getItem("miritiniPoints")) || 0;
+
+let activities =
+Number(localStorage.getItem("miritiniActivities")) || 0;
+
+let favourites =
+JSON.parse(
+localStorage.getItem("miritiniFavourites") || "[]"
+);
+
+let currentCategory = "all";
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(page) {
+
+    document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
+    document.getElementById(page)
+    .classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =====================================================
+   POINTS
+===================================================== */
+
+function addPoints(amount) {
+
+    points += amount;
+
+    activities++;
+
+    localStorage.setItem(
+        "miritiniPoints",
+        points
+    );
+
+    localStorage.setItem(
+        "miritiniActivities",
+        activities
+    );
+
+    updateProgress();
+}
+
+
+function getRank() {
+
+    if (points >= 1000)
+        return "English Master";
+
+    if (points >= 750)
+        return "Expert Communicator";
+
+    if (points >= 500)
+        return "Advanced Communicator";
+
+    if (points >= 250)
+        return "Fluent Communicator";
+
+    if (points >= 100)
+        return "Developing Communicator";
+
+    return "Beginner";
+}
+
+
+function updateProgress() {
+
+    document.getElementById("totalPoints")
+    .textContent = points;
+
+    document.getElementById("activities")
+    .textContent = activities;
+
+    document.getElementById("homePoints")
+    .textContent = points;
+
+    document.getElementById("homeActivities")
+    .textContent = activities;
+
+    const rank = getRank();
+
+    document.getElementById("rank")
+    .textContent = rank;
+
+    document.getElementById("homeRank")
+    .textContent = rank;
+
+
+    let progress =
+    (points % 250) / 250 * 100;
+
+    if (points >= 1000)
+        progress = 100;
+
+    document.getElementById("progressFill")
+    .style.width = progress + "%";
+
+
+    let badge =
+    "🌱 Beginner Communicator";
+
+    if (points >= 1000)
+        badge = "👑 English Master";
+
+    else if (points >= 750)
+        badge = "🏆 Expert Communicator";
+
+    else if (points >= 500)
+        badge = "🎓 Advanced Communicator";
+
+    else if (points >= 250)
+        badge = "⭐ Fluent Communicator";
+
+    else if (points >= 100)
+        badge = "📈 Developing Communicator";
+
+    document.getElementById("rankBadge")
+    .textContent = badge;
+}
+
+
+/* =====================================================
+   SPEECH SYNTHESIS
+===================================================== */
+
+function speakText(text) {
+
+    if (!("speechSynthesis" in window)) {
+
+        alert(
+            "Text-to-speech is not supported by this browser."
+        );
+
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const speech =
+    new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-US";
+
+    speech.rate = .85;
+
+    speech.pitch = 1;
+
+    speechSynthesis.speak(speech);
+}
+
+
+/* =====================================================
+   DICTIONARY
+===================================================== */
+
+function filterVocabulary(category) {
+
+    currentCategory = category;
+
+    searchVocabulary();
+}
+
+
+function searchVocabulary() {
+
+    const search =
+    document.getElementById("wordSearch")
+    .value
+    .toLowerCase()
+    .trim();
+
+
+    const results =
+    vocabulary.filter(item => {
+
+        const categoryMatch =
+        currentCategory === "all" ||
+        item.category === currentCategory;
+
+        const searchMatch =
+        search === "" ||
+
+        item.word.toLowerCase()
+        .includes(search) ||
+
+        item.definition.toLowerCase()
+        .includes(search) ||
+
+        item.synonyms.some(
+            s =>
+            s.toLowerCase()
+            .includes(search)
+        );
+
+        return categoryMatch && searchMatch;
+    });
+
+
+    displayDictionaryResults(results);
+}
+
+
+function displayDictionaryResults(results) {
+
+    const container =
+    document.getElementById("dictionaryResult");
+
+
+    if (results.length === 0) {
+
+        container.innerHTML = `
+            <h2>❌ No results</h2>
+            <p>
+                Try another word or choose another category.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+    `<p><strong>${results.length}</strong>
+    word(s) found.</p>` +
+
+    results.map(item => `
+
+        <div class="dictionary-card">
+
+            <h2>
+                ${item.word}
+            </h2>
+
+            <p>
+                <strong>Definition:</strong><br>
+                ${item.definition}
+            </p>
+
+            <p>
+                <strong>Synonyms:</strong><br>
+                ${item.synonyms.join(", ")}
+            </p>
+
+            <p>
+                <strong>Antonyms:</strong><br>
+                ${
+                    item.antonyms.length
+                    ? item.antonyms.join(", ")
+                    : "Not listed"
+                }
+            </p>
+
+            <div class="example">
+
+                <strong>Example:</strong><br>
+
+                ${item.example}
+
+            </div>
+
+            <p>
+                <strong>Category:</strong>
+                ${item.category}
+            </p>
+
+            <button
+            onclick="pronounceWord('${item.word}')">
+            🔊 Pronounce
+            </button>
+
+            <button
+            class="green"
+            onclick="toggleFavourite('${item.word}')">
+            ⭐ Favourite
+            </button>
+
+        </div>
+
+    `).join("");
+}
+
+
+function pronounceWord(word) {
+
+    speakText(word);
+
+    addPoints(2);
+}
+
+
+function randomVocabulary() {
+
+    const available =
+    vocabulary.filter(item =>
+        currentCategory === "all" ||
+        item.category === currentCategory
+    );
+
+
+    const index =
+    Math.floor(
+        Math.random() * available.length
+    );
+
+
+    const item =
+    available[index];
+
+
+    document.getElementById("wordSearch")
+    .value = item.word;
+
+    displayDictionaryResults([item]);
+
+    addPoints(5);
+}
+
+
+function showWordOfDay() {
+
+    const date =
+    new Date();
+
+    const index =
+    date.getDate() %
+    vocabulary.length;
+
+    const item =
+    vocabulary[index];
+
+    document.getElementById("wordSearch")
+    .value = item.word;
+
+    displayDictionaryResults([item]);
+}
+
+
+function toggleFavourite(word) {
+
+    if (favourites.includes(word)) {
+
+        favourites =
+        favourites.filter(
+            item => item !== word
+        );
+
+    } else {
+
+        favourites.push(word);
+
+        addPoints(5);
+    }
+
+
+    localStorage.setItem(
+        "miritiniFavourites",
+        JSON.stringify(favourites)
+    );
+
+
+    displayFavourites();
+}
+
+
+function displayFavourites() {
+
+    const container =
+    document.getElementById("favouritesList");
+
+
+    if (favourites.length === 0) {
+
+        container.textContent =
+        "No favourite words yet.";
+
+        return;
+    }
+
+
+    container.innerHTML =
+    favourites.map(word => `
+
+        <button
+        class="favourite"
+        onclick="openFavourite('${word}')">
+
+            ⭐ ${word}
+
+        </button>
+
+    `).join("");
+}
+
+
+function openFavourite(word) {
+
+    document.getElementById("wordSearch")
+    .value = word;
+
+    searchVocabulary();
+}
+
+
+/* =====================================================
+   SPEAKING
+===================================================== */
+
+const speakingQuestions = {
+
+intermediate: [
+
+"Describe a difficult decision you have made and explain why you made it.",
+
+"Explain how technology can improve learning in secondary schools.",
+
+"Describe a person who has influenced your education.",
+
+"What qualities make someone an effective leader?",
+
+"Explain why communication is important in everyday life."
+
+],
+
+advanced: [
+
+"Discuss whether artificial intelligence is more beneficial than harmful to education.",
+
+"Explain how critical thinking can help students make better decisions.",
+
+"Describe the qualities of an effective public speaker.",
+
+"Discuss the importance of resilience when facing academic challenges.",
+
+"Explain how social media can influence the behaviour of young people.",
+
+"Discuss whether academic success depends more on discipline than intelligence."
+
+],
+
+expert: [
+
+"Evaluate the long-term impact of artificial intelligence on human education and employment.",
+
+"Defend or challenge the argument that technology has transformed education more positively than negatively.",
+
+"Discuss how effective leadership can influence the development of a school community.",
+
+"Analyse the relationship between critical thinking, misinformation and responsible citizenship.",
+
+"Explain how young people can balance technological advancement with ethical responsibility.",
+
+"Argue whether academic institutions should prioritise creativity over examination performance."
+
+]
+
+};
+
+
+let speakingLevel = "advanced";
+
+let speakingIndex = 0;
+
+
+function setSpeakingLevel(level) {
+
+    speakingLevel = level;
+
+    speakingIndex = 0;
+
+    document.getElementById("speakingLevel")
+    .textContent =
+    level.charAt(0).toUpperCase() +
+    level.slice(1);
+
+    showSpeakingQuestion();
+}
+
+
+function showSpeakingQuestion() {
+
+    const questions =
+    speakingQuestions[speakingLevel];
+
+    document.getElementById("speakingQuestion")
+    .textContent =
+    questions[speakingIndex];
+
+    document.getElementById("speakingResult")
+    .textContent =
+    "Your speech transcript will appear here.";
+}
+
+
+function nextSpeakingQuestion() {
+
+    speakingIndex++;
+
+    const questions =
+    speakingQuestions[speakingLevel];
+
+    if (
+        speakingIndex >= questions.length
+    ) {
+
+        speakingIndex = 0;
+    }
+
+    showSpeakingQuestion();
+}
+
+
+function hearSpeakingQuestion() {
+
+    speakText(
+        document.getElementById(
+            "speakingQuestion"
+        ).textContent
+    );
+}
+
+
+function startSpeaking() {
+
+    const Recognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+    if (!Recognition) {
+
+        alert(
+            "Speech recognition is not supported. Please use Google Chrome."
+        );
+
+        return;
+    }
+
+
+    const recognition =
+    new Recognition();
+
+
+    recognition.lang = "en-US";
+
+    recognition.interimResults = false;
+
+    recognition.continuous = false;
+
+
+    document.getElementById(
+        "speakingResult"
+    ).textContent =
+    "🎙️ Listening... Speak now.";
+
+
+    recognition.start();
+
+
+    recognition.onresult =
+    function(event) {
+
+        const transcript =
+        event.results[0][0].transcript;
+
+
+        document.getElementById(
+            "speakingResult"
+        ).innerHTML =
+
+        "<strong>Your response:</strong><br>" +
+        transcript +
+        "<br><br>⭐ Great effort!";
+
+
+        addPoints(20);
+    };
+
+
+    recognition.onerror =
+    function() {
+
+        document.getElementById(
+            "speakingResult"
+        ).textContent =
+        "Could not recognise your speech. Please try again.";
+    };
+}
+
+
+/* =====================================================
+   DEBATE
+===================================================== */
+
+let debateTimer;
+
+let debateSeconds = 60;
+
+
+function startDebate(seconds) {
+
+    clearInterval(debateTimer);
+
+    debateSeconds = seconds;
+
+    document.getElementById(
+        "debateTimer"
+    ).textContent =
+    debateSeconds;
+
+
+    debateTimer =
+    setInterval(function() {
+
+        debateSeconds--;
+
+        document.getElementById(
+            "debateTimer"
+        ).textContent =
+        debateSeconds;
+
+
+        if (debateSeconds <= 0) {
+
+            clearInterval(debateTimer);
+
+            document.getElementById(
+                "debateTimer"
+            ).textContent =
+            "TIME!";
+
+
+            document.getElementById(
+                "debateResult"
+            ).textContent =
+            "🎉 Debate completed! You earned 30 points.";
+
+
+            addPoints(30);
+        }
+
+    },1000);
+}
+
+
+function stopDebate() {
+
+    clearInterval(debateTimer);
+
+    document.getElementById(
+        "debateTimer"
+    ).textContent =
+    "Stopped";
+}
+
+
+function startDebateRecognition() {
+
+    const Recognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+    if (!Recognition) {
+
+        alert(
+            "Speech recognition is not supported. Please use Google Chrome."
+        );
+
+        return;
+    }
+
+
+    const recognition =
+    new Recognition();
+
+
+    recognition.lang = "en-US";
+
+    recognition.continuous = true;
+
+    recognition.interimResults = false;
+
+
+    document.getElementById(
+        "debateResult"
+    ).textContent =
+    "🎙️ Listening to your debate...";
+
+
+    recognition.start();
+
+
+    recognition.onresult =
+    function(event) {
+
+        let transcript = "";
+
+
+        for (
+            let i = event.resultIndex;
+            i < event.results.length;
+            i++
+        ) {
+
+            transcript +=
+            event.results[i][0].transcript +
+            " ";
+        }
+
+
+        document.getElementById(
+            "debateResult"
+        ).innerHTML =
+        "<strong>Your debate:</strong><br>" +
+        transcript;
+    };
+}
+
+
+/* =====================================================
+   GRAMMAR
+===================================================== */
+
+const grammarQuestions = [
+
+{
+question:
+"If I _____ more time, I would have completed the assignment earlier.",
+
+answers:["had had"],
+
+explanation:
+"This is a third conditional sentence."
+},
+
+{
+question:
+"By the time the teacher arrived, the students _____ the experiment.",
+
+answers:["had completed","had finished"],
+
+explanation:
+"The past perfect shows that one past action happened before another."
+},
+
+{
+question:
+"The student said that she _____ the assignment the following day.",
+
+answers:["would submit"],
+
+explanation:
+"Reported speech changes 'will' to 'would'."
+},
+
+{
+question:
+"Neither the teacher nor the students _____ responsible for the mistake.",
+
+answers:["were"],
+
+explanation:
+"The verb agrees with the nearer subject, 'students'."
+},
+
+{
+question:
+"The book, _____ was written by a Kenyan author, received an award.",
+
+answers:["which"],
+
+explanation:
+"'Which' introduces a non-defining relative clause."
+},
+
+{
+question:
+"If students _____ regularly, they are more likely to remember what they learn.",
+
+answers:["study"],
+
+explanation:
+"This is a zero conditional describing a general truth."
+},
+
+{
+question:
+"She wishes she _____ more confident during public speaking.",
+
+answers:["were"],
+
+explanation:
+"'Were' is commonly used in unreal wish constructions."
+}
+
+];
+
+
+let grammarIndex = 0;
+
+
+function displayGrammar() {
+
+    const q =
+    grammarQuestions[grammarIndex];
+
+    document.getElementById(
+        "grammarQuestion"
+    ).textContent =
+    q.question;
+
+
+    document.getElementById(
+        "grammarAnswer"
+    ).value = "";
+
+
+    document.getElementById(
+        "grammarResult"
+    ).textContent = "";
+}
+
+
+function checkGrammar() {
+
+    const answer =
+    document.getElementById(
+        "grammarAnswer"
+    ).value
+    .trim()
+    .toLowerCase();
+
+
+    const accepted =
+    grammarQuestions[
+        grammarIndex
+    ].answers;
+
+
+    if (accepted.includes(answer)) {
+
+        document.getElementById(
+            "grammarResult"
+        ).innerHTML =
+        "✅ Correct!<br>" +
+        grammarQuestions[
+            grammarIndex
+        ].explanation;
+
+
+        addPoints(15);
+
+    } else {
+
+        document.getElementById(
+            "grammarResult"
+        ).innerHTML =
+        "❌ Not quite.<br>" +
+        "Correct answer: <strong>" +
+        accepted[0] +
+        "</strong><br><br>" +
+        grammarQuestions[
+            grammarIndex
+        ].explanation;
+    }
+}
+
+
+function nextGrammar() {
+
+    grammarIndex++;
+
+    if (
+        grammarIndex >=
+        grammarQuestions.length
+    ) {
+
+        grammarIndex = 0;
+    }
+
+    displayGrammar();
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+const quizQuestions = [
+
+{
+question:
+"Which word best describes someone who can express complex ideas clearly?",
+
+options:[
+"Articulate",
+"Ambiguous",
+"Reluctant",
+"Fragile"
+],
+
+answer:"Articulate"
+},
+
+{
+question:
+"Which sentence uses a third conditional correctly?",
+
+options:[
+"If I study, I will pass.",
+"If I had studied, I would have passed.",
+"If I studied, I pass.",
+"If I will study, I passed."
+],
+
+answer:
+"If I had studied, I would have passed."
+},
+
+{
+question:
+"What does 'consequently' mean?",
+
+options:[
+"However",
+"For example",
+"As a result",
+"In contrast"
+],
+
+answer:"As a result"
+},
+
+{
+question:
+"Which word means 'trustworthy and believable'?",
+
+options:[
+"Credible",
+"Controversial",
+"Ambiguous",
+"Inevitable"
+],
+
+answer:"Credible"
+},
+
+{
+question:
+"Which word means 'very careful and precise'?",
+
+options:[
+"Meticulous",
+"Inevitable",
+"Ethical",
+"Substantial"
+],
+
+answer:"Meticulous"
+},
+
+{
+question:
+"Which word is closest in meaning to 'furthermore'?",
+
+options:[
+"Nevertheless",
+"Moreover",
+"Consequently",
+"Otherwise"
+],
+
+answer:"Moreover"
+},
+
+{
+question:
+"What does 'resilient' describe?",
+
+options:[
+"Someone who gives up immediately",
+"Someone able to recover from difficulties",
+"Someone who avoids learning",
+"Someone who refuses to communicate"
+],
+
+answer:
+"Someone able to recover from difficulties"
+},
+
+{
+question:
+"Which word means 'including all important aspects'?",
+
+options:[
+"Comprehensive",
+"Ambiguous",
+"Reluctant",
+"Temporary"
+],
+
+answer:"Comprehensive"
+},
+
+{
+question:
+"What is the main purpose of a persuasive argument?",
+
+options:[
+"To confuse the audience",
+"To entertain only",
+"To convince the audience",
+"To avoid giving evidence"
+],
+
+answer:"To convince the audience"
+},
+
+{
+question:
+"What does 'coherent' mean?",
+
+options:[
+"Logical and well organised",
+"Very expensive",
+"Extremely fast",
+"Impossible to understand"
+],
+
+answer:"Logical and well organised"
+}
+
+];
+
+
+let quizIndex = 0;
+
+
+function displayQuiz() {
+
+    const q =
+    quizQuestions[quizIndex];
+
+
+    document.getElementById(
+        "quizQuestion"
+    ).textContent =
+    q.question;
+
+
+    document.getElementById(
+        "quizOptions"
+    ).innerHTML =
+
+    q.options.map(option => `
+
+        <button
+        class="quiz-option"
+        onclick="checkQuiz(this, '${option.replace(/'/g,"\\'")}')">
+
+        ${option}
+
+        </button>
+
+    `).join("");
+
+
+    document.getElementById(
+        "quizResult"
+    ).textContent = "";
+}
+
+
+function checkQuiz(button, answer) {
+
+    const correct =
+    quizQuestions[quizIndex].answer;
+
+
+    document.querySelectorAll(
+        ".quiz-option"
+    ).forEach(b => {
+        b.disabled = true;
+    });
+
+
+    if (answer === correct) {
+
+        button.style.background =
+        "#06a77d";
+
+        button.style.color =
+        "white";
+
+
+        document.getElementById(
+            "quizResult"
+        ).innerHTML =
+        "✅ Correct! You earned 20 points.";
+
+
+        addPoints(20);
+
+    } else {
+
+        button.style.background =
+        "#d62828";
+
+        button.style.color =
+        "white";
+
+
+        document.getElementById(
+            "quizResult"
+        ).innerHTML =
+        "❌ Incorrect.<br>" +
+        "Correct answer: <strong>" +
+        correct +
+        "</strong>";
+    }
+}
+
+
+function nextQuiz() {
+
+    quizIndex++;
+
+
+    if (
+        quizIndex >=
+        quizQuestions.length
+    ) {
+
+        quizIndex = 0;
+    }
+
+
+    displayQuiz();
+}
+
+
+/* =====================================================
+   RESET PROGRESS
+===================================================== */
+
+function resetProgress() {
+
+    if (
+        !confirm(
+            "Are you sure you want to reset all your progress?"
+        )
+    ) {
+
+        return;
+    }
+
+
+    points = 0;
+
+    activities = 0;
+
+    favourites = [];
+
+
+    localStorage.removeItem(
+        "miritiniPoints"
+    );
+
+    localStorage.removeItem(
+        "miritiniActivities"
+    );
+
+    localStorage.removeItem(
+        "miritiniFavourites"
+    );
+
+
+    updateProgress();
+
+    displayFavourites();
+
+
+    alert(
+        "Progress has been reset."
+    );
+}
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+updateProgress();
+
+displayFavourites();
+
+searchVocabulary();
+
+displayGrammar();
+
+displayQuiz();
+
+showSpeakingQuestion();
+
+</script>
+
+</body>
+</html>
